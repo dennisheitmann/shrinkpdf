@@ -68,7 +68,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-streamlit run shrinkpdf_app.py
+streamlit run app.py
 ```
 
 Then open [http://localhost:8501](http://localhost:8501) in your browser.
