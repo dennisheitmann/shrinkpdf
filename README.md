@@ -6,7 +6,7 @@ A Streamlit web app to sanitize and compress PDF files. It remove locks, signatu
 
 ## Features
 
-- **Sanitize** — strips everything that prevents clean editing or saving:
+- **Sanitize:** strips everything that prevents clean editing or saving:
   - Usage-rights locks (`/Perms`, UR3)
   - Digital signatures and signature flags
   - XFA (LiveCycle dynamic form definitions)
@@ -15,16 +15,18 @@ A Streamlit web app to sanitize and compress PDF files. It remove locks, signatu
   - Pushbutton action fields (print/clear buttons)
   - RichText flags on text fields
 
-- **Shrink** — reduces file size without changing the visual layout:
+- **Shrink:** reduces file size without changing the visual layout:
   - Recompresses all PDF streams with flate (zlib)
   - Converts all embedded images to RGB JPEG
   - Downsamples images above a target DPI cap
   - Applies chroma subsampling (4:1:1) at higher compression levels
   - Finds images everywhere they can hide: page resources, nested Form XObjects, Pattern resources, and soft-mask (`/SMask`) references
 
-- **Remove images** — replaces all embedded images with 1×1 white placeholders, keeping the page layout intact
+- **Remove images:** replaces all embedded images with 1×1 white placeholders, keeping the page layout intact
 
-- **5 compression presets**:
+- **Linearize output:** optimizes the file for fast web viewing and archival (PDF/A-compatible)
+
+- **5 compression presets:**
 
   | Level | JPEG quality | Max DPI | Chroma subsampling |
   |-------|-------------|---------|-------------------|
@@ -75,9 +77,10 @@ Then open [http://localhost:8501](http://localhost:8501) in your browser.
 
 1. Upload a PDF
 2. Select the operations to apply (sanitize / shrink / remove images)
-3. If shrinking, choose a compression level (1–5)
-4. Click **Process PDF**
-5. Download the result
+3. Optionally keep metadata, convert to grayscale, or linearize the output
+4. If shrinking, choose a compression level (1–5)
+5. Click **Process PDF**
+6. Download the result
 
 ---
 
@@ -95,9 +98,12 @@ shrinkpdf/
 ## Notes
 
 - Operations are applied in order: **sanitize → remove images → shrink**
-- Remove images and shrink are mutually exclusive — if remove images is selected, shrink is skipped
+- Remove images and shrink are mutually exclusive: if remove images is selected, shrink is skipped
+- Grayscale conversion and linearization are also skipped when remove images is selected
+- If only linearization is requested (no shrink or remove images), the file is re-saved with linearization only
 - Images are decoded to RGB before recompression, handling RGB, CMYK, grayscale, and palette color spaces
-- The page layout is never modified — only image data and stream compression are changed
+- Images smaller than 50×50 px are skipped during shrink
+- The page layout is never modified, only image data and stream compression are changed
 
 ---
 
