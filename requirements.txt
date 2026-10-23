@@ -18,7 +18,7 @@ numpy==2.4.6
 packaging==26.3
 pandas==3.0.5
 pikepdf==10.13.0.post1
-pillow==12.3.0
+pillow==13.0.0
 protobuf==7.36.1
 pyarrow==25.0.1
 pydeck==0.9.3
@@ -32,7 +32,7 @@ starlette==1.6.0
 streamlit==1.63.0
 toml==0.10.2
 typing_extensions==4.16.0
-urllib3==2.7.0
+urllib3==2.8.0
 uvicorn==0.52.4
 watchdog==6.0.0
 websockets==16.1.1
