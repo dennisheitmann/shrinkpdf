@@ -1,5 +1,5 @@
 """
-shrinkpdf_app.py — Streamlit UI for PDF sanitization and shrinking.
+app.py — Streamlit UI for PDF sanitization and shrinking.
 """
 
 import os
