@@ -172,10 +172,6 @@ def _image_placements(pdf) -> dict:
     return placements
 
 
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
-
 def is_valid_pdf(pdf_bytes: bytes) -> tuple[bool, str]:
     """
     Try to open the PDF and read its pages.
